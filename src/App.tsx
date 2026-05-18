@@ -404,10 +404,10 @@ const filterwishes = wishes.filter((wish) => wish.title.toLowerCase().includes(s
 }*/
 
 
-import { useState } from "react";
-import Medicine from "./components/Medicine"; // تأكدي من إسم ملف الابن عندج إذا كان Medicine أو غير إسم
+import { useState, useEffect } from "react";
+import Medicine from "./components/Medicine";
 
-
+// شكل الدواء الواحد
 interface medicine {
   id: number;
   name: string;
@@ -416,25 +416,37 @@ interface medicine {
 }
 
 export default function App() {
-  // 1. المصفوفة الافتراضية
-  const [medicines, setmedicine] = useState<medicine[]>([
-    { id: 1, name: "بنادول", price: 500, iscompleted: false },
-    { id: 2, name: "ديتول", price: 1500, iscompleted: false },
-    { id: 3, name: "فيتامين", price: 7000, iscompleted: false },
-  ]);
+  // 1. المصفوفة الافتراضية - نقرأ من localStorage اول مرة
+  const [medicines, setmedicine] = useState<medicine[]>(() => {
+    const saved = localStorage.getItem("medicines");
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    // اذا ما موجود شي محفوظ، نرجع المصفوفة الافتراضية
+    return [
+      { id: 1, name: "بنادول", price: 500, iscompleted: false },
+      { id: 2, name: "ديتول", price: 1500, iscompleted: false },
+      { id: 3, name: "فيتامين", price: 7000, iscompleted: false },
+    ];
+  });
 
   // 2. الـ States مالت الـ Inputs
   const [name, setname] = useState<string>("");
   const [price, setprice] = useState<number>(0);
   const [search, setsearch] = useState<string>("");
 
-  // 3. دالة الإضافة
+  // 3. نحفظ بالـ localStorage كل مرة تتغير القائمة
+  useEffect(() => {
+    localStorage.setItem("medicines", JSON.stringify(medicines));
+  }, [medicines]);
+
+  // 4. دالة الإضافة
   const handleadd = () => {
     if (name.trim() !== "" && price !== 0) {
       const newmedicine: medicine = {
         id: Date.now(),
         name: name,
-        price: Number(price), // تحويل السعر إلى رقم ليطابق الـ interface
+        price: Number(price),
         iscompleted: false,
       };
 
@@ -444,61 +456,101 @@ export default function App() {
     }
   };
 
-  const handledelte =(id: number)=>{
-    setmedicine(medicines.filter(medicine=> medicine.id !== id));
-  }
+  // 5. دالة الحذف
+  const handledelte = (id: number) => {
+    setmedicine(medicines.filter(medicine => medicine.id !== id));
+  };
 
-  const handleupdate=(id: number, newname: string, newprice: string)=>{
-    setmedicine(medicines.map(medicine=> medicine.id === id ?{...medicine, name: newname, price: Number(newprice)}: medicine));
-  }
+  // 6. دالة التعديل
+  const handleupdate = (id: number, newname: string, newprice: string) => {
+    setmedicine(medicines.map(medicine => medicine.id === id ? { ...medicine, name: newname, price: Number(newprice) } : medicine));
+  };
 
-  const filtermedicines = medicines.filter(medicine=> medicine.name.toLowerCase().includes(search.toLowerCase()));
+  // 7. فلترة الأدوية حسب البحث
+  const filtermedicines = medicines.filter(medicine => medicine.name.toLowerCase().includes(search.toLowerCase()));
+
+  // 8. الإحصائيات
+  const totalMedicines = medicines.length;
+  const totalPrice = medicines.reduce((sum, m) => sum + m.price, 0);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-8" dir="rtl">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-2xl text-indigo-800 text-center font-bold mt-12">
-          قائمة الادوية
+        {/* العنوان */}
+        <h1 className="text-4xl text-indigo-800 text-center font-bold mt-8 mb-2">
+          💊 قائمة الادوية
         </h1>
+        <p className="text-center text-gray-500 mb-8">ادارة الادوية بسهولة</p>
+
+        {/* بطاقات الإحصائيات */}
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="bg-white py-6 rounded-4xl text-center border-2 border-indigo-100">
+            <p className="text-gray-500 text-sm">عدد الادوية</p>
+            <p className="text-5xl font-bold text-indigo-700">{totalMedicines}</p>
+          </div>
+          <div className="bg-white p-6 rounded-4xl text-center border-2 border-pink-100">
+            <p className="text-gray-500 text-sm">مجموع الاسعار</p>
+            <p className="text-3xl font-bold text-pink-600">{totalPrice} د</p>
+          </div>
+        </div>
 
         {/* حقول الإدخال والزر */}
-        <div className="flex justify-center gap-2 mt-12">
-          <input
-            className="w-full max-w-md border-2 border-indigo-300 rounded outline-none p-2 text-black"
-            type="text"
-            value={name}
-            onChange={(e) => setname(e.target.value)}
-            placeholder="اكتب اسم الدواء"
-          />
-          <input
-            className="w-full max-w-md border-2 border-indigo-300 rounded outline-none p-2 text-black"
-            type="number"
-            value={price}
-            onChange={(e) => setprice(Number(e.target.value))}
-            placeholder="اكتب سعر الدواء"
-          />
-          <button
-            onClick={handleadd}
-            className="px-4 py-2 rounded bg-indigo-500 text-white cursor-pointer hover:bg-indigo-600 transition"
-          >
-            اضافة
-          </button>
-        </div>
-        
-        {/* عرض قائمة الأدوية - الأقواس دائرية للـ Return التلقائي */}
-        <div className="flex flex-col justify-center items-center w-full max-w-md mx-auto gap-4 mt-12">
-           <input className="w-full max-w-md border-2 border-indigo-300 rounded outline-none p-2 text-black" type="text" value={search} onChange={(e)=> setsearch(e.target.value)} placeholder="ابحث عن الدواء المطلوب"></input>
-          {filtermedicines.map((medicine) => (
-            <Medicine
-              key={medicine.id}
-              id={medicine.id}
-              name={medicine.name}
-              price={medicine.price}
-              iscompleted={medicine.iscompleted}
-              ondelete={()=> handledelte(medicine.id)}
-              onupdate={(newname, newprice)=> handleupdate(medicine.id, newname,newprice)}
+        <div className="bg-white p-6 rounded-4xl mb-6">
+          <h2 className="text-lg font-bold text-indigo-800 mb-4">➕ اضافة دواء جديد</h2>
+          <div className="flex flex-col sm:flex-row gap-2">
+            <input
+              className="flex-1 border border-indigo-200 rounded-xl outline-none focus:border-indigo-500 p-2 text-black transition"
+              type="text"
+              value={name}
+              onChange={(e) => setname(e.target.value)}
+              placeholder="اكتب اسم الدواء"
             />
-          ))}
+            <input
+              className="flex-1 border border-indigo-200 rounded-xl outline-none focus:border-indigo-500 p-2 text-black transition"
+              type="number"
+              value={price}
+              onChange={(e) => setprice(Number(e.target.value))}
+              placeholder="اكتب سعر الدواء"
+            />
+            <button
+              onClick={handleadd}
+              className="px-6 py-2 rounded-xl bg-indigo-600 text-white cursor-pointer hover:bg-indigo-700 transition font-bold hover:shadow-sm"
+            >
+              اضافة
+            </button>
+          </div>
+        </div>
+
+        {/* حقل البحث */}
+        <div className="relative mb-6">
+          <input
+            className="w-full border border-indigo-200 rounded-xl outline-none focus:border-indigo-500 p-3 pr-10 text-black bg-white transition"
+            type="text"
+            value={search}
+            onChange={(e) => setsearch(e.target.value)}
+            placeholder="🔍 ابحث عن الدواء المطلوب"
+          />
+        </div>
+
+        {/* عرض قائمة الأدوية */}
+        <div className="flex flex-col gap-3">
+          {filtermedicines.length === 0 ? (
+            <div className="text-center text-gray-400 py-8 bg-white rounded-4xl shadow-sm">
+              لا يوجد ادوية للعرض
+            </div>
+          ) : (
+            filtermedicines.map((medicine) => (
+              <Medicine
+                key={medicine.id}
+                id={medicine.id}
+                name={medicine.name}
+                price={medicine.price}
+                iscompleted={medicine.iscompleted}
+                ondelete={() => handledelte(medicine.id)}
+                onupdate={(newname, newprice) => handleupdate(medicine.id, newname, newprice)}
+              />
+            ))
+          )}
         </div>
       </div>
     </div>
