@@ -126,18 +126,18 @@ export default function Game() {
       <h1 className="text-4xl text-indigo-700 font-bold mb-12">Game of Cards</h1>
       
       {/* شبكة المربعات (صفين وعمودين) *//*
-      <div className="grid grid-cols-2 gap-6">
-        {cards.map((card) => (
-          <Main
-            key={card.id}
-            text={card.text}
-            isVisible={card.isVisible}
-            onFilp={() => handleclick(card.id)}
-          />
-        ))}
-      </div>
-    </div>
-  );
+<div className="grid grid-cols-2 gap-6">
+{cards.map((card) => (
+<Main
+key={card.id}
+text={card.text}
+isVisible={card.isVisible}
+onFilp={() => handleclick(card.id)}
+/>
+))}
+</div>
+</div>
+);
 }*/
 /*
 import { useState } from "react";
@@ -215,19 +215,19 @@ export default function App() {
 
         <div className="flex flex-col">
           {/* 3. ماكنة الطباعة (الـ map) */
-          /*
-          {items.map((item) => (
-            <Bought
-              key={item.id}
-              name={item.name}
-              isBought={item.isBought}
-              onToggle={() => handleToggle(item.id)}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+/*
+{items.map((item) => (
+  <Bought
+    key={item.id}
+    name={item.name}
+    isBought={item.isBought}
+    onToggle={() => handleToggle(item.id)}
+  />
+))}
+</div>
+</div>
+</div>
+);
 }*/
 /*
 import { useState } from "react";
@@ -290,45 +290,45 @@ export default function App() {
       </div>
    </div>
         {/* --- هذا هو قسم الإضافة اللي جان ناقص --- *//*
-        <div className="bg-white p-6 rounded-xl shadow-sm mb-8 flex gap-4 justify-center items-center">
-          <input
-            value={addName}
-            onChange={(e) => setAddName(e.target.value)}
-            placeholder="اسم الطالب"
-            className="border-2 border-gray-100 p-2 rounded-lg focus:border-blue-400 outline-none text-black font-bold"
-          />
-          <input
-            type="number"
-            value={addScore}
-            onChange={(e) => setAddScore(e.target.value)}
-            placeholder="الدرجة"
-            className="border-2 border-gray-100 p-2 rounded-lg w-24 focus:border-blue-400 outline-none text-black font-bold"
-          />
-          <button 
-            onClick={handleAdd}
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 font-bold transition-all"
-          >
-            إضافة
-          </button>
-        </div>
+<div className="bg-white p-6 rounded-xl shadow-sm mb-8 flex gap-4 justify-center items-center">
+<input
+value={addName}
+onChange={(e) => setAddName(e.target.value)}
+placeholder="اسم الطالب"
+className="border-2 border-gray-100 p-2 rounded-lg focus:border-blue-400 outline-none text-black font-bold"
+/>
+<input
+type="number"
+value={addScore}
+onChange={(e) => setAddScore(e.target.value)}
+placeholder="الدرجة"
+className="border-2 border-gray-100 p-2 rounded-lg w-24 focus:border-blue-400 outline-none text-black font-bold"
+/>
+<button 
+onClick={handleAdd}
+className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 font-bold transition-all"
+>
+إضافة
+</button>
+</div>
 
-        {/* عرض البطاقات *//*
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {students.map((student) => (
-            <Student
-              key={student.id}
-              id={student.id}
-              name={student.name}
-              score={student.score}
-              onDelete={() => deleteStudent(student.id)}
-              onUpdate={updateStudent}
-              onMassage={() => {}}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+{/* عرض البطاقات *//*
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  {students.map((student) => (
+    <Student
+      key={student.id}
+      id={student.id}
+      name={student.name}
+      score={student.score}
+      onDelete={() => deleteStudent(student.id)}
+      onUpdate={updateStudent}
+      onMassage={() => {}}
+    />
+  ))}
+</div>
+</div>
+</div>
+);
 }*/
 
 /*
@@ -403,7 +403,7 @@ const filterwishes = wishes.filter((wish) => wish.title.toLowerCase().includes(s
   )
 }*/
 
-
+/*
 import { useState, useEffect } from "react";
 import Medicine from "./components/Medicine";
 
@@ -476,13 +476,13 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-8" dir="rtl">
       <div className="max-w-2xl mx-auto">
-        {/* العنوان */}
+         العنو
         <h1 className="text-4xl text-indigo-800 text-center font-bold mt-8 mb-2">
-          💊 قائمة الادوية
+          💊 قائمة الادوية 
         </h1>
         <p className="text-center text-gray-500 mb-8">ادارة الادوية بسهولة</p>
 
-        {/* بطاقات الإحصائيات */}
+        /* بطاقات الإحصائيات 
         <div className="grid grid-cols-2 gap-4 mb-8">
           <div className="bg-white py-6 rounded-4xl text-center border-2 border-indigo-100">
             <p className="text-gray-500 text-sm">عدد الادوية</p>
@@ -494,7 +494,7 @@ export default function App() {
           </div>
         </div>
 
-        {/* حقول الإدخال والزر */}
+        {/* حقول الإدخال والزر 
         <div className="bg-white p-6 rounded-4xl mb-6">
           <h2 className="text-lg font-bold text-indigo-800 mb-4">➕ اضافة دواء جديد</h2>
           <div className="flex flex-col sm:flex-row gap-2">
@@ -521,7 +521,7 @@ export default function App() {
           </div>
         </div>
 
-        {/* حقل البحث */}
+        {/* حقل البحث 
         <div className="relative mb-6">
           <input
             className="w-full border border-indigo-200 rounded-xl outline-none focus:border-indigo-500 p-3 pr-10 text-black bg-white transition"
@@ -532,7 +532,7 @@ export default function App() {
           />
         </div>
 
-        {/* عرض قائمة الأدوية */}
+        {/* عرض قائمة الأدوية 
         <div className="flex flex-col gap-3">
           {filtermedicines.length === 0 ? (
             <div className="text-center text-gray-400 py-8 bg-white rounded-4xl shadow-sm">
@@ -552,6 +552,204 @@ export default function App() {
             ))
           )}
         </div>
+      </div>
+    </div>
+  );
+}*/
+
+import { useState, useEffect } from "react";
+import PerfumeItem from "./components/Berfeum";
+
+// 1. القالب الخاص بالعطر الواحد (TypeScript Interface)
+interface Perfume {
+  id: number;
+  name: string;
+  type: string;
+  family: string;
+  price: number;
+  season: string; // صيفي أو شتوي
+  iscompleted: boolean;
+}
+
+export default function App() {
+  // 2. المصفوفة الأساسية - تقرأ من ذاكرة المتصفح localStorage أول مرة
+  const [perfumes, setPerfumes] = useState<Perfume[]>(() => {
+    const saved = localStorage.getItem("perfumes");
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    // عطور افتراضية إذا كانت الذاكرة فارغة
+    return [
+      { id: 1, name: "بلو شانيل", type: "أودو برفيوم", family: "سكري", price: 150000, season: "صيفي", iscompleted: false },
+      { id: 2, name: "توم فورد", type: "بارفام", family: "أخشاب", price: 250000, season: "شتوي", iscompleted: false }
+    ];
+  });
+
+  // 3. الـ States الخاصة بحقول الإدخال
+  const [name, setName] = useState<string>("");
+  const [type, setType] = useState<string>("");
+  const [family, setFamily] = useState<string>("");
+  const [price, setPrice] = useState<number>(0);
+  const [season, setSeason] = useState<string>("صيفي"); // القيمة الافتراضية صيفي
+  const [search, setSearch] = useState<string>("");
+
+  // 4. حفظ البيانات تلقائياً بذاكرة المتصفح عند أي تغيير
+  useEffect(() => {
+    localStorage.setItem("perfumes", JSON.stringify(perfumes));
+  }, [perfumes]);
+
+  // 5. دالة إضافة عطر جديد
+  const handleAdd = () => {
+    if (name.trim() !== "" && price !== 0) {
+      const newPerfume: Perfume = {
+        id: Date.now(),
+        name: name,
+        type: type,
+        family: family,
+        price: Number(price),
+        season: season,
+        iscompleted: false,
+      };
+
+      setPerfumes([...perfumes, newPerfume]);
+      // تصفير الحقول بعد الإضافة
+      setName("");
+      setType("");
+      setFamily("");
+      setPrice(0);
+      setSeason("صيفي");
+    }
+  };
+
+  // 6. دالة الحذف
+  const handleDelete = (id: number) => {
+    setPerfumes(perfumes.filter(p => p.id !== id));
+  };
+
+  // 7. دالة التعديل (تحديث البيانات)
+  const handleUpdate = (id: number, newName: string, newPrice: string, newSeason: string) => {
+    setPerfumes(perfumes.map(p => p.id === id ? { ...p, name: newName, price: Number(newPrice), season: newSeason } : p));
+  };
+
+  // 8. فلترة العطور حسب خانة البحث
+  const filterPerfumes = perfumes.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
+
+
+  const totalPerfumes = perfumes.length;
+  const totalPrice = perfumes.reduce((sum, p) => sum + p.price, 0);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-red-50 p-8" dir="rtl">
+      <div className="max-w-2xl mx-auto">
+
+        <h1 className="text-4xl text-pink-400 text-center font-bold mt-8 mb-2">
+          🌸 مكتبة العطور
+        </h1>
+        <p className="text-center text-gray-500 mb-8">إدارة مجموعتك العطرية الخاصة بسهولة</p>
+
+        {/* 📊 بطاقات الإحصائيات (تم تحديد max-w-md لتصغير العرض وتوسيطها) */}
+        <div className="grid grid-cols-2 gap-4 mb-8 max-w-md mx-auto">
+          <div className="bg-white py-4 px-6 rounded-3xl text-center border border-purple-100 shadow-sm">
+            <p className="text-gray-400 text-xs font-bold mb-1">عدد العطور</p>
+            <p className="text-3xl font-bold text-pink-600">{totalPerfumes}</p>
+          </div>
+          <div className="bg-white py-4 px-6 rounded-3xl text-center border border-pink-100 shadow-sm">
+            <p className="text-gray-400 text-xs font-bold mb-1">مجموع الأسعار</p>
+            <p className="text-2xl font-bold text-pink-600">{totalPrice.toLocaleString()} د</p>
+          </div>
+        </div>
+
+        {/* ➕ حقول الإدخال لإضافة عطر جديد */}
+        <div className="bg-white p-6 rounded-3xl border border-purple-100 shadow-sm mb-6">
+          <div className="flex flex-col gap-3">
+            <input
+              className="w-full border border-purple-100 rounded-xl outline-none focus:border-pink-500 p-2 text-black transition text-sm bg-gray-50/50"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="اسم العطر"
+            />
+
+            <input
+              className="w-full border border-purple-100 rounded-xl outline-none focus:border-pink-500 p-2 text-black transition text-sm bg-gray-50/50"
+              type="text"
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+              placeholder="نوع العطر (مثال: أودو برفيوم)"
+            />
+
+            <input
+              className="w-full border border-purple-100 rounded-xl outline-none focus:border-pink-500 p-2 text-black transition text-sm bg-gray-50/50"
+              type="text"
+              value={family}
+              onChange={(e) => setFamily(e.target.value)}
+              placeholder="عائلة العطر (سكري، أخشاب، وردي)"
+            />
+
+            <div className="flex gap-2">
+              <input
+                className="flex-1 border border-purple-100 rounded-xl outline-none focus:border-pink-500 p-2 text-black transition text-sm bg-gray-50/50"
+                type="number"
+                value={price === 0 ? "" : price}
+                onChange={(e) => setPrice(Number(e.target.value))}
+                placeholder="سعر العطر"
+              />
+
+              {/* حقل الخيارات المنسدلة للفصل (شتوي/صيفي) */}
+              <select
+                value={season}
+                onChange={(e) => setSeason(e.target.value)}
+                className="border border-purple-100 rounded-xl outline-none focus:border-pink-500 p-2 text-black bg-gray-50/50 transition text-sm cursor-pointer"
+              >
+                <option value="صيفي">☀️ صيفي</option>
+                <option value="شتوي">❄️ شتوي</option>
+              </select>
+            </div>
+
+            <button
+              onClick={handleAdd}
+              className="w-full mt-2 py-2.5 rounded-xl bg-pink-300 text-white cursor-pointer hover:bg-pink-400 transition font-bold text-sm shadow-sm"
+            >
+              إضافة العطر
+            </button>
+          </div>
+        </div>
+
+        {/* 🔍 حقل البحث */}
+        <div className="relative mb-6">
+          <input
+            className="w-full border border-purple-100 rounded-xl outline-none focus:border-pink-500 p-3 text-black bg-white transition text-sm shadow-sm"
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="🔍 ابحث عن العطر المطلوب..."
+          />
+        </div>
+
+        {/* 📜 عرض قائمة العطور */}
+        <div className="flex flex-col gap-3">
+          {filterPerfumes.length === 0 ? (
+            <div className="text-center text-gray-400 py-8 bg-white rounded-3xl border border-pink-50 shadow-sm text-sm">
+              لا توجد عطور متطابقة مع البحث
+            </div>
+          ) : (
+            filterPerfumes.map((perfume) => (
+              <PerfumeItem
+                key={perfume.id}
+                id={perfume.id}
+                name={perfume.name}
+                type={perfume.type}
+                family={perfume.family}
+                price={perfume.price}
+                season={perfume.season}
+                iscompleted={perfume.iscompleted}
+                onDelete={() => handleDelete(perfume.id)}
+                onUpdate={(newName, newPrice, newSeason) => handleUpdate(perfume.id, newName, newPrice, newSeason)}
+              />
+            ))
+          )}
+        </div>
+
       </div>
     </div>
   );
